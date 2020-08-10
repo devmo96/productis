@@ -28,18 +28,42 @@ export default class PopUp extends Component {
             &times;
           </span>
           <br />
-          <div>
-            {this.props.playedArray.map((gridItem) => (
-              <App
-                id={gridItem.id}
-                imgsource={gridItem.imgsource}
-                audiosource={gridItem.audiosource}
-                label={gridItem.label}
-                fun2={this.fun2}
-                handleChange={this.handleChange}
-                volume={this.props.playingVolume[gridItem.id]}
-              />
-            ))}
+          {this.props.tplayedArray.length === 0 ? (
+            <div>
+              {this.props.playedArray.map((gridItem) => (
+                <App
+                  id={gridItem.id}
+                  imgsource={gridItem.imgsource}
+                  audiosource={gridItem.audiosource}
+                  label={gridItem.label}
+                  fun2={this.fun2}
+                  handleChange={this.handleChange}
+                  volume={this.props.playingVolume[gridItem.id]}
+                  playing={1}
+                />
+              ))}
+            </div>
+          ) : (
+            <div>
+              {this.props.tplayedArray.map((gridItem) => (
+                <App
+                  id={gridItem.id}
+                  imgsource={gridItem.imgsource}
+                  audiosource={gridItem.audiosource}
+                  label={gridItem.label}
+                  fun2={this.fun2}
+                  handleChange={this.handleChange}
+                  volume={this.props.playingVolume[gridItem.id]}
+                  playing={0}
+                />
+              ))}
+            </div>
+          )}
+          <div className="btn" onClick={this.props.stop}>
+            <button>stop</button>
+          </div>
+          <div className="btn" onClick={this.props.pauseplay}>
+            <button>{this.props.pauseplayy}</button>
           </div>
         </div>
       </div>

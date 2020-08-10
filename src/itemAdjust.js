@@ -37,7 +37,7 @@ class App extends React.Component {
       <div className="item-div">
         <div className="button-div">
           <button
-            className="img-clicked"
+            className={this.props.playing === 1 ? "img-clicked" : "img-btn"}
             style={{ backgroundColor: "white" }}
             onClick={() => {
               this.props.fun2(this.props.id);

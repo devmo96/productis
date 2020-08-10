@@ -7,15 +7,19 @@ import App from "./item";
 
 class Main extends React.Component {
   state = {
-    played: 1,
     n: 0,
     playedArray: [],
     playedArrayid: [],
     playingArray: new Array(3).fill(0),
-    playingVolume: new Array(3).fill(0.9),
+    playingVolume: new Array(3).fill(0.5),
+    tplayedArray: [],
+    tplayedArrayid: [],
+    tplayingArray: new Array(3).fill(0),
+    tplayingVolume: new Array(3).fill(0.5),
     clicked: "false",
     visibility: "hidden",
     seen: false,
+    pauseplay: "pause",
   };
 
   componentDidMount() {
@@ -111,15 +115,54 @@ class Main extends React.Component {
       seen: !this.state.seen,
     });
   };
+  stop = () => {
+    const tplayedArray = [];
+    const tplayedArrayid = [];
+    const tplayingArray = new Array(3).fill(0);
+    const tplayingVolume = new Array(3).fill(0.5);
+    this.setState({
+      playedArray: tplayedArray,
+      playedArrayid: tplayedArrayid,
+      playingArray: tplayingArray,
+      playingVolume: tplayingVolume,
+      tplayedArray: [],
+      tplayedArrayid: [],
+      tplayingArray: new Array(3).fill(0),
+      tplayingVolume: new Array(3).fill(0.5),
+      pauseplay: "pause",
+    });
+  };
+
+  pauseplay = () => {
+    if (this.state.pauseplay === "play") {
+      this.setState({
+        playedArray: this.state.tplayedArray,
+        playedArrayid: this.state.tplayedArrayid,
+        playingArray: this.state.tplayingArray,
+        tplayedArray: [],
+        tplayedArrayid: [],
+        tplayingArray: new Array(3).fill(0),
+
+        pauseplay: "pause",
+      });
+    } else if (this.state.pauseplay === "pause") {
+      this.setState({
+        tplayedArray: this.state.playedArray,
+        tplayedArrayid: this.state.playedArrayid,
+        tplayingArray: this.state.playingArray,
+        playedArray: [],
+        playedArrayid: [],
+        playingArray: new Array(3).fill(0),
+        pauseplay: "play",
+      });
+    }
+  };
 
   render() {
     return (
       <div>
         <div>
           <div>
-            <div className="btn" onClick={this.togglePop}>
-              <button>adjust</button>
-            </div>
             {this.state.seen ? (
               <PopUp
                 toggle={this.togglePop}
@@ -127,7 +170,23 @@ class Main extends React.Component {
                 onPlay={this.handlePlay2}
                 playingVolume={this.state.playingVolume}
                 volumeChange={this.volumeChange}
+                stop={this.stop}
+                pauseplay={this.pauseplay}
+                pauseplayy={this.state.pauseplay}
+                tplayedArray={this.state.tplayedArray}
               />
+            ) : null}
+            <div className="btn" onClick={this.togglePop}>
+              <button>adjust</button>
+            </div>
+            <div className="btn" onClick={this.stop}>
+              <button>stop</button>
+            </div>
+            {this.state.tplayedArray.length !== 0 ||
+            this.state.playedArray.length !== 0 ? (
+              <div className="btn" onClick={this.pauseplay}>
+                <button>{this.state.pauseplay}</button>
+              </div>
             ) : null}
           </div>
 
