@@ -24,7 +24,7 @@
     "save": "^2.4.0",
     "styled-components": "^5.1.1"
   },
-  "homepage": "https://devmo.github.io/production",
+  "homepage": "https://devmo.github.io/productio",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
