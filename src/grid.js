@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import App from "./item";
 import data from "./data/data";
-import "./gridStyle.css";
+import "./App.css";
 
 //https://github.com/STORIS/react-material-responsive-grid/blob/master/LICENSE
 class Grid1 extends React.Component {
@@ -18,7 +18,7 @@ class Grid1 extends React.Component {
   };
   render() {
     return (
-      <div>
+      <div className="grid">
         {data.map((gridItem) => (
           <App
             id={gridItem.id}

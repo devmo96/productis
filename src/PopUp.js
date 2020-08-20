@@ -1,15 +1,8 @@
 import React, { Component } from "react";
 import App from "./itemAdjust";
+import "./App.css";
+
 export default class PopUp extends Component {
-  /*
-  componentDidMount() {
-    const playedTemp = this.props.playedArray;
-    const played2 = data.filter(function (item) {
-      return playedTemp.includes(item.id);
-    });
-    this.setState({ played: played2 });
-    console.log(this.state.playedTemp);
-  }*/
   handleChange = (combo) => {
     console.log(combo);
     this.props.volumeChange(combo);
@@ -22,13 +15,13 @@ export default class PopUp extends Component {
   };
   render() {
     return (
-      <div className="modal">
+      <div className="modals">
         <div className="modal_content">
           <span className="close" onClick={this.handleClick}>
             &times;
           </span>
           <br />
-          {this.props.tplayedArray.length === 0 ? (
+          {this.props.pauseplayy === "pause" ? (
             <div>
               {this.props.playedArray.map((gridItem) => (
                 <App

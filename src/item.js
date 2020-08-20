@@ -13,7 +13,6 @@ class App extends React.Component {
     volume: this.props.volume,
     label: this.props.label,
     saveLabel: "label",
-    className: "img-btn",
   };
 
   handleChange = (value) => {
@@ -26,9 +25,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="item-div">
-        <div className="button-div">
+        <div className="btn button-div">
           <button
-            className={this.props.playing == 0 ? "img-btn" : "img-clicked"}
+            className={this.props.playing == 0 ? " img-btn" : " img-clicked"}
             style={{ backgroundColor: "white" }}
             onClick={() => {
               this.props.fun1(this.props.id);
@@ -44,11 +43,9 @@ class App extends React.Component {
           loop={true}
           volume={this.props.volume}
         />
-
         <p className="label">
           {this.props.playing == 0 ? this.props.label : ""}
         </p>
-
         {this.props.playing !== 0 && (
           <Slider
             //https://github.com/react-component/slider

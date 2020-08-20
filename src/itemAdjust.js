@@ -35,6 +35,7 @@ class App extends React.Component {
 
     return (
       <div className="item-div">
+        <p className="labeladj">{this.props.label}</p>
         <div className="button-div">
           <button
             className={this.props.playing === 1 ? "img-clicked" : "img-btn"}
@@ -47,13 +48,6 @@ class App extends React.Component {
           </button>
         </div>
 
-        {/*<ReactHowler
-          preload={true}
-          src={this.state.audiosource}
-          playing={this.state.playing}
-          loop={true}
-          volume={this.state.volume}
-        />*/}
         <Slider
           //https://github.com/react-component/slider
           value={this.props.volume}
