@@ -18,19 +18,21 @@ class Grid1 extends React.Component {
   };
   render() {
     return (
-      <div className="grid">
-        {data.map((gridItem) => (
-          <App
-            id={gridItem.id}
-            imgsource={gridItem.imgsource}
-            audiosource={gridItem.audiosource}
-            label={gridItem.label}
-            fun1={this.fun1}
-            handleChange={this.handleChange}
-            volume={this.props.playingVolume[gridItem.id]}
-            playing={this.props.playingArray[gridItem.id]}
-          />
-        ))}
+      <div className="grid-container">
+        <div className="grid">
+          {data.map((gridItem) => (
+            <App
+              id={gridItem.id}
+              imgsource={gridItem.imgsource}
+              audiosource={gridItem.audiosource}
+              label={gridItem.label}
+              fun1={this.fun1}
+              handleChange={this.handleChange}
+              volume={this.props.playingVolume[gridItem.id]}
+              playing={this.props.playingArray[gridItem.id]}
+            />
+          ))}
+        </div>
       </div>
     );
   }

@@ -25,7 +25,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="item-div">
-        <div className="btn button-div">
+        <div className="button-div">
           <button
             className={this.props.playing == 0 ? " img-btn" : " img-clicked"}
             style={{ backgroundColor: "white" }}

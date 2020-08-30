@@ -449,7 +449,7 @@ const data = [
     id: 74,
     imgsource: require("../assets/photo/67.jpg"),
     audiosource: require("../assets/audio/paper-shredder.mp3"),
-    label: "Papaer Shredder",
+    label: "Paper Shredder",
   },
   {
     id: 75,

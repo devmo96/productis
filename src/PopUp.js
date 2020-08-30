@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState, useRef, Component } from "react";
 import App from "./itemAdjust";
 import "./App.css";
 
@@ -13,9 +13,11 @@ export default class PopUp extends Component {
   fun2 = (param) => {
     this.props.onPlay(param);
   };
+
   render() {
     return (
       <div className="modals">
+        <div className="modals2" onClick={this.handleClick} />
         <div className="modal_content">
           <span className="close" onClick={this.handleClick}>
             &times;

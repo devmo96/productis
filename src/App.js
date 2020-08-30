@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, useRef } from "react";
 import Grid1 from "./grid";
 import "./App.css";
 import PopUp from "./PopUp";
 import data from "./data/data";
 import NavBar from "./navbar";
+import { Link } from "react-scroll";
 
 class Main extends React.Component {
   state = {
@@ -22,6 +23,10 @@ class Main extends React.Component {
     pauseplay: "pause",
   };
 
+  gotoAnimals = () => {
+    const Crickets = useRef(null);
+    window.scrollTo({ top: Crickets.current.offsetTop, behavior: "smooth" });
+  };
   componentDidMount() {
     console.log(this.state.playingArray);
   }
@@ -166,6 +171,11 @@ class Main extends React.Component {
         playedArrayid: playedtemp2,
         playingArray: playingtemp,
       });
+      if (played2.length === 0) {
+        this.setState({
+          seen: !this.state.seen,
+        });
+      }
     } else if (this.state.pauseplay === "play") {
       const playedtemp = this.state.tplayedArrayid;
       const playedtemp2 = playedtemp.filter((c) => c !== itemId);
@@ -181,6 +191,14 @@ class Main extends React.Component {
         playedArrayid: playedtemp2,
         tplayingArray: playingtemp,
       });
+      console.log(
+        this.state.playedArray.length + "hi" + this.state.tplayedArray.length
+      );
+      if (played2.length === 0) {
+        this.setState({
+          seen: !this.state.seen,
+        });
+      }
     }
   };
 
@@ -232,10 +250,33 @@ class Main extends React.Component {
     }
   };
 
+  mix1 = () => {
+    const tplayedArrayid = [];
+    const tplayingArray = new Array(100).fill(0);
+    const tplayingVolume = new Array(100).fill(0.5);
+    tplayedArrayid[0] = 0;
+    const tplayedArray = data.filter(function (item) {
+      return tplayedArrayid.includes(item.id);
+    });
+    tplayingArray[0] = 1;
+    tplayingVolume[0] = 0.7;
+    this.setState({
+      playedArray: tplayedArray,
+      playedArrayid: tplayedArrayid,
+      playingArray: tplayingArray,
+      playingVolume: tplayingVolume,
+      tplayedArray: [],
+      tplayedArrayid: [],
+      tplayingArray: new Array(100).fill(0),
+      tplayingVolume: new Array(100).fill(0.5),
+      pauseplay: "pause",
+    });
+  };
+  timer = (time) => {};
   render() {
     return (
       <React.Fragment>
-        <NavBar />
+        <NavBar timer={this.timer} />
         <div>
           {this.state.seen ? (
             <PopUp
@@ -271,47 +312,367 @@ class Main extends React.Component {
                 </div>
               ) : null}
             </div>
-            <div className="bar2"> </div>
-            <div className="bar3">
-              <div className="btn">
-                <button className="btn2">Rain</button>
+            <div className="bar2">
+              <div
+                className="categ-div"
+                id={this.props.label}
+                ref={this.props.label}
+              >
+                <div className="btn button-div">
+                  <button className={"img"} style={{ backgroundColor: "pink" }}>
+                    <img src={this.props.imgsource} className="photo" />
+                  </button>
+                </div>
+
+                <p className="label2">Hi</p>
               </div>
-              <div className="btn">
-                <button className="btn2">Water</button>
+              <div
+                className="categ-div"
+                id={this.props.label}
+                ref={this.props.label}
+              >
+                <div className="btn button-div">
+                  <button
+                    className={"img"}
+                    style={{ backgroundColor: "pink" }}
+                    onClick={this.mix1}
+                  >
+                    <img src={this.props.imgsource} className="photo" />
+                  </button>
+                </div>
+
+                <p className="label2">Hi</p>
+              </div>
+              <div
+                className="categ-div"
+                id={this.props.label}
+                ref={this.props.label}
+              >
+                <div className="btn button-div">
+                  <button className={"img"} style={{ backgroundColor: "pink" }}>
+                    <img src={this.props.imgsource} className="photo" />
+                  </button>
+                </div>
+
+                <p className="label2">Hi</p>
+              </div>
+              <div
+                className="categ-div"
+                id={this.props.label}
+                ref={this.props.label}
+              >
+                <div className="btn button-div">
+                  <button
+                    className={"img"}
+                    style={{ backgroundColor: "pink" }}
+                    onClick={this.mix1}
+                  >
+                    <img src={this.props.imgsource} className="photo" />
+                  </button>
+                </div>
+
+                <p className="label2">Hi</p>
+              </div>
+              <div
+                className="categ-div"
+                id={this.props.label}
+                ref={this.props.label}
+              >
+                <div className="btn button-div">
+                  <button className={"img"} style={{ backgroundColor: "pink" }}>
+                    <img src={this.props.imgsource} className="photo" />
+                  </button>
+                </div>
+
+                <p className="label2">Hi</p>
+              </div>
+              <div
+                className="categ-div"
+                id={this.props.label}
+                ref={this.props.label}
+              >
+                <div className="btn button-div">
+                  <button
+                    className={"img"}
+                    style={{ backgroundColor: "pink" }}
+                    onClick={this.mix1}
+                  >
+                    <img src={this.props.imgsource} className="photo" />
+                  </button>
+                </div>
+
+                <p className="label2">Hi</p>
+              </div>
+              <div
+                className="categ-div"
+                id={this.props.label}
+                ref={this.props.label}
+              >
+                <div className="btn button-div">
+                  <button className={"img"} style={{ backgroundColor: "pink" }}>
+                    <img src={this.props.imgsource} className="photo" />
+                  </button>
+                </div>
+
+                <p className="label2">Hi</p>
+              </div>
+              <div
+                className="categ-div"
+                id={this.props.label}
+                ref={this.props.label}
+              >
+                <div className="btn button-div">
+                  <button
+                    className={"img"}
+                    style={{ backgroundColor: "pink" }}
+                    onClick={this.mix1}
+                  >
+                    <img src={this.props.imgsource} className="photo" />
+                  </button>
+                </div>
+
+                <p className="label2">Hi</p>
+              </div>
+              <div
+                className="categ-div"
+                id={this.props.label}
+                ref={this.props.label}
+              >
+                <div className="btn button-div">
+                  <button className={"img"} style={{ backgroundColor: "pink" }}>
+                    <img src={this.props.imgsource} className="photo" />
+                  </button>
+                </div>
+
+                <p className="label2">Hi</p>
+              </div>
+              <div
+                className="categ-div"
+                id={this.props.label}
+                ref={this.props.label}
+              >
+                <div className="btn button-div">
+                  <button
+                    className={"img"}
+                    style={{ backgroundColor: "pink" }}
+                    onClick={this.mix1}
+                  >
+                    <img src={this.props.imgsource} className="photo" />
+                  </button>
+                </div>
+
+                <p className="label2">Hi</p>
+              </div>
+            </div>
+            <div className="bar3">
+              <div className="iflex btn">
+                <Link
+                  className="btn2"
+                  activeClass="active"
+                  to="Heavy Rain"
+                  spy={true}
+                  smooth={true}
+                  hashSpy={true}
+                  offset={0}
+                  duration={500}
+                  isDynamic={true}
+                  ignoreCancelEvents={false}
+                >
+                  Rain
+                </Link>
+              </div>
+              <div className="iflex btn">
+                <Link
+                  className="btn2"
+                  activeClass="active"
+                  to="Lake"
+                  spy={true}
+                  smooth={true}
+                  hashSpy={true}
+                  offset={0}
+                  duration={500}
+                  isDynamic={true}
+                  ignoreCancelEvents={false}
+                >
+                  Water
+                </Link>
               </div>
 
-              <div className="btn">
-                <button className="btn2">Wind</button>
+              <div className="iflex btn">
+                <Link
+                  className="btn2"
+                  activeClass="active"
+                  to="Wind"
+                  spy={true}
+                  smooth={true}
+                  hashSpy={true}
+                  offset={0}
+                  duration={500}
+                  isDynamic={true}
+                  ignoreCancelEvents={false}
+                >
+                  Wind
+                </Link>
               </div>
-              <div className="btn">
-                <button className="btn2">Nature</button>
+              <div className="iflex btn">
+                <Link
+                  className="btn2"
+                  activeClass="active"
+                  to="White Noise"
+                  spy={true}
+                  smooth={true}
+                  hashSpy={true}
+                  offset={0}
+                  duration={500}
+                  isDynamic={true}
+                  ignoreCancelEvents={false}
+                >
+                  Nature
+                </Link>
               </div>
-              <div className="btn">
-                <button className="btn2">Animals</button>
+              <div className="iflex btn">
+                <Link
+                  className="btn2"
+                  activeClass="active"
+                  to="Crickets"
+                  spy={true}
+                  smooth={true}
+                  hashSpy={true}
+                  offset={0}
+                  duration={500}
+                  isDynamic={true}
+                  ignoreCancelEvents={false}
+                >
+                  Animals
+                </Link>
               </div>
-              <div className="btn">
-                <button className="btn2">Birds</button>
+              <div className="iflex btn">
+                <Link
+                  className="btn2"
+                  activeClass="active"
+                  to="Canary"
+                  spy={true}
+                  smooth={true}
+                  hashSpy={true}
+                  offset={0}
+                  duration={500}
+                  isDynamic={true}
+                  ignoreCancelEvents={false}
+                >
+                  Birds
+                </Link>
               </div>
-              <div className="btn">
-                <button className="btn2">Ambiances</button>
+              <div className="iflex btn">
+                <Link
+                  className="btn2"
+                  activeClass="active"
+                  to="Beach"
+                  spy={true}
+                  smooth={true}
+                  hashSpy={true}
+                  offset={0}
+                  duration={500}
+                  isDynamic={true}
+                  ignoreCancelEvents={false}
+                >
+                  Ambiences
+                </Link>
               </div>
-              <div className="btn">
-                <button className="btn2">Transportation</button>
+              <div className="iflex btn">
+                <Link
+                  className="btn2"
+                  activeClass="active"
+                  to="Airplane"
+                  spy={true}
+                  smooth={true}
+                  hashSpy={true}
+                  offset={0}
+                  duration={500}
+                  isDynamic={true}
+                  ignoreCancelEvents={false}
+                >
+                  Transportation
+                </Link>
               </div>
-              <div className="btn">
-                <button className="btn2">Objects</button>
+              <div className="iflex btn">
+                <Link
+                  className="btn2"
+                  activeClass="active"
+                  to="Air Conditioner"
+                  spy={true}
+                  smooth={true}
+                  hashSpy={true}
+                  offset={0}
+                  duration={500}
+                  isDynamic={true}
+                  ignoreCancelEvents={false}
+                >
+                  Objects
+                </Link>
               </div>
-              <div className="btn">
-                <button className="btn2">Noise</button>
+              <div className="iflex btn">
+                <Link
+                  className="btn2"
+                  activeClass="active"
+                  to="White Noise"
+                  spy={true}
+                  smooth={true}
+                  hashSpy={true}
+                  offset={0}
+                  duration={500}
+                  isDynamic={true}
+                  ignoreCancelEvents={false}
+                >
+                  Noise
+                </Link>
               </div>
-              <div className="btn">
-                <button className="btn2">Fire</button>
+              <div className="iflex btn">
+                <Link
+                  className="btn2"
+                  activeClass="active"
+                  to="Fire"
+                  spy={true}
+                  smooth={true}
+                  hashSpy={true}
+                  offset={0}
+                  duration={500}
+                  isDynamic={true}
+                  ignoreCancelEvents={false}
+                >
+                  Fire
+                </Link>
               </div>
-              <div className="btn">
-                <button className="btn2">Wind Chimes</button>
+              <div className="iflex btn">
+                <Link
+                  className="btn2"
+                  activeClass="active"
+                  to="Wind Chimes"
+                  spy={true}
+                  smooth={true}
+                  hashSpy={true}
+                  offset={0}
+                  duration={500}
+                  isDynamic={true}
+                  ignoreCancelEvents={false}
+                >
+                  Wind Chimes
+                </Link>
               </div>
-              <div className="btn">
-                <button className="btn2">Meditation</button>
+              <div className="iflex btn">
+                <Link
+                  className="btn2"
+                  activeClass="active"
+                  to="9in Crystal Bowl"
+                  spy={true}
+                  smooth={true}
+                  hashSpy={true}
+                  offset={0}
+                  duration={500}
+                  isDynamic={true}
+                  ignoreCancelEvents={false}
+                >
+                  Meditation
+                </Link>
               </div>
             </div>
             <div className="Grid">
