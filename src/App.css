@@ -179,6 +179,7 @@ label2 {
   text-align: center;
 }
 .bar3 {
+  text-align: center;
   height: 100%;
   background-color: rgba(38, 212, 116, 0.5);
   white-space: nowrap;
@@ -196,16 +197,9 @@ label2 {
 
 .grid {
   position: absolute;
-  left: 7.5%;
-  width: 85%;
+  left: 10%;
+  width: 80%;
   min-height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-}
-
-.grid > div {
-  flex-basis: calc(25%);
 }
 
 .close {

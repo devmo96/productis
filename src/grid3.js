@@ -1,48 +1,44 @@
 import React, { Component } from "react";
-import App from "./itemAdjust";
+import App from "./item";
 import data from "./data/data";
-export default class PopUp extends Component {
-    state = {
-        src=this.props.playedArray
-      };
-      
-      /*
-  componentDidMount() {
-    const playedTemp = this.props.playedArray;
-    const played2 = data.filter(function (item) {
-      return playedTemp.includes(item.id);
-    });
-    this.setState({ played: played2 });
-    console.log(this.state.playedTemp);
-  }*/
-
-  handleClick = () => {
-    this.props.toggle();
+import "./App.css";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
+//https://github.com/STORIS/react-material-responsive-grid/blob/master/LICENSE
+class Grid1 extends React.Component {
+  state = {
+    playingArray: this.props.playingArray,
+    playingVolume: this.props.playingVolume,
   };
-  fun2 = (param) => {
+  fun1 = (param) => {
     this.props.onPlay(param);
+  };
+  handleChange = (combo) => {
+    console.log(combo);
+    this.props.volumeChange(combo);
   };
   render() {
     return (
-      <div className="modal">
-        <div className="modal_content">
-          <span className="close" onClick={this.handleClick}>
-            &times;
-          </span>
-          <br />
-          <div>
-            {this.props.playedArray.map((gridItem) => (
+      <Container className="grid-container">
+        <Row className="justify-content-md-center grid">
+          {data.map((gridItem) => (
+            <Col xs="6" md="4" lg="3">
               <App
                 id={gridItem.id}
                 imgsource={gridItem.imgsource}
                 audiosource={gridItem.audiosource}
                 label={gridItem.label}
-                fun2={this.fun2}
+                fun1={this.fun1}
+                handleChange={this.handleChange}
+                volume={this.props.playingVolume[gridItem.id]}
+                playing={this.props.playingArray[gridItem.id]}
               />
-            ))}
-          </div>
-        </div>
-      </div>
+            </Col>
+          ))}
+        </Row>
+      </Container>
     );
   }
 }
+export default Grid1;

@@ -2,6 +2,7 @@ import React, { Component, useRef } from "react";
 import Grid1 from "./grid";
 import "./App.css";
 import PopUp from "./PopUp";
+import PopUp2 from "./PopUp2";
 import data from "./data/data";
 import NavBar from "./navbar";
 import { Link } from "react-scroll";
@@ -20,6 +21,7 @@ class Main extends React.Component {
     clicked: "false",
     visibility: "hidden",
     seen: false,
+    seen2: false,
     pauseplay: "pause",
   };
 
@@ -207,6 +209,11 @@ class Main extends React.Component {
       seen: !this.state.seen,
     });
   };
+  togglePop2 = () => {
+    this.setState({
+      seen2: !this.state.seen2,
+    });
+  };
   stop = () => {
     const tplayedArray = [];
     const tplayedArrayid = [];
@@ -272,15 +279,49 @@ class Main extends React.Component {
       pauseplay: "pause",
     });
   };
-  timer = (time) => {};
+  timer = () => {
+    const tplayedArray = [];
+    const tplayedArrayid = [];
+    const tplayingArray = new Array(100).fill(0);
+    const tplayingVolume = new Array(100).fill(0.5);
+    this.setState({
+      playedArray: tplayedArray,
+      playedArrayid: tplayedArrayid,
+      playingArray: tplayingArray,
+      playingVolume: tplayingVolume,
+      tplayedArray: [],
+      tplayedArrayid: [],
+      tplayingArray: new Array(100).fill(0),
+      tplayingVolume: new Array(100).fill(0.5),
+      pauseplay: "pause",
+    });
+  };
   render() {
     return (
       <React.Fragment>
-        <NavBar timer={this.timer} />
+        <NavBar
+          playedArray={this.state.playedArray}
+          tplayedArray={this.state.tplayedArray}
+          popUp2={this.togglePop2}
+          timer={this.timer}
+        />
         <div>
           {this.state.seen ? (
             <PopUp
               toggle={this.togglePop}
+              playedArray={this.state.playedArray}
+              onPlay={this.handlePlay2}
+              playingVolume={this.state.playingVolume}
+              volumeChange={this.volumeChange}
+              stop={this.stop}
+              pauseplay={this.pauseplay}
+              pauseplayy={this.state.pauseplay}
+              tplayedArray={this.state.tplayedArray}
+            />
+          ) : null}
+          {this.state.seen2 ? (
+            <PopUp
+              toggle={this.togglePop2}
               playedArray={this.state.playedArray}
               onPlay={this.handlePlay2}
               playingVolume={this.state.playingVolume}

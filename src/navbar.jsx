@@ -9,9 +9,57 @@ class NavBar extends Component {
     this.state = {
       timeSeconds: "00:00:00",
       time2: 0,
+      time3: 5,
+      isClicked: false,
     };
-
     this.onTimeChange = this.onTimeChange.bind(this);
+    this.startCountDown = this.startCountDown.bind(this);
+    this.tick = this.tick.bind(this);
+    this.popUp = this.popUp.bind(this);
+  }
+
+  tick = () => {
+    if (this.state.time2 > 0) {
+      this.setState({ time2: this.state.time2 - 1 });
+      const time2 = this.state.time2;
+      var hours = Math.floor(time2 / 3600);
+      console.log("hours :" + hours);
+      var min = Math.floor((time2 - hours * 3600) / 60);
+      console.log("minutes :" + min);
+      var sec = time2 - min * 60 - hours * 3600;
+      console.log("seconds :" + sec);
+      var strhours = "";
+      var strmin = "";
+      var strsec = "";
+      if (hours >= 10) {
+        strhours = String(hours);
+      } else {
+        strhours = "0" + String(hours);
+      }
+      if (min >= 10) {
+        strmin = String(min);
+      } else {
+        strmin = "0" + String(min);
+      }
+      if (sec >= 10) {
+        strsec = String(sec);
+      } else {
+        strsec = "0" + String(sec);
+      }
+
+      const timeSeconds = strhours + ":" + strmin + ":" + strsec;
+      this.setState({
+        timeSeconds,
+      });
+      console.log(this.state.time2);
+    }
+    if (this.state.time2 === 0) {
+      this.props.timer();
+      clearInterval(this.intervalHandle);
+    }
+  };
+  startCountDown() {
+    this.intervalHandle = setInterval(this.tick, 1000);
   }
 
   onTimeChange(event, value) {
@@ -27,6 +75,10 @@ class NavBar extends Component {
     this.setState({ timeSeconds, time2 });
   }
 
+  popUp() {
+    this.props.popUp2(2);
+  }
+
   render() {
     const { timeSeconds } = this.state;
 
@@ -35,17 +87,27 @@ class NavBar extends Component {
         <a className="navbar-brand" href="#">
           Focus Melodies
         </a>
-        <TimeField
-          showSeconds
-          value={timeSeconds}
-          onChange={this.onTimeChange}
-          style={{ width: 95 }}
-          input={
-            <TextField label="Timer" value={timeSeconds} variant="outlined" />
-          }
-        />
-        <div className="btn" onClick={this.props.timer(this.state.time2)}>
-          <button>Start</button>
+        <div>
+          <TimeField
+            showSeconds
+            value={timeSeconds}
+            onChange={this.onTimeChange}
+            style={{ width: 95 }}
+            input={
+              <TextField label="Timer" value={timeSeconds} variant="outlined" />
+            }
+          />
+          <div
+            className="btn"
+            onClick={
+              this.props.playedArray.length === 0 &&
+              this.props.tplayedArray.length === 0
+                ? this.popUp
+                : this.startCountDown
+            }
+          >
+            <button>Start</button>
+          </div>
         </div>
         .
       </nav>

@@ -5,7 +5,6 @@ import "./App.css";
 import Slider, { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
 import Button from "react-bootstrap/Button";
-import image from "./assets/photo/8.jpg";
 
 class App extends React.Component {
   state = {
@@ -24,7 +23,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="item-div">
+      <div className="item-div" id={this.props.label}>
         <div className="button-div">
           <button
             className={this.props.playing == 0 ? " img-btn" : " img-clicked"}
