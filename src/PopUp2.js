@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, Component } from "react";
 import App from "./itemAdjust";
 import "./App.css";
 
-export default class PopUp extends Component {
+export default class PopUp2 extends Component {
   handleChange = (combo) => {
     console.log(combo);
     this.props.volumeChange(combo);
@@ -23,43 +23,6 @@ export default class PopUp extends Component {
             &times;
           </span>
           <br />
-          {this.props.pauseplayy === "pause" ? (
-            <div>
-              {this.props.playedArray.map((gridItem) => (
-                <App
-                  id={gridItem.id}
-                  imgsource={gridItem.imgsource}
-                  audiosource={gridItem.audiosource}
-                  label={gridItem.label}
-                  fun2={this.fun2}
-                  handleChange={this.handleChange}
-                  volume={this.props.playingVolume[gridItem.id]}
-                  playing={1}
-                />
-              ))}
-            </div>
-          ) : (
-            <div>
-              {this.props.tplayedArray.map((gridItem) => (
-                <App
-                  id={gridItem.id}
-                  imgsource={gridItem.imgsource}
-                  audiosource={gridItem.audiosource}
-                  label={gridItem.label}
-                  fun2={this.fun2}
-                  handleChange={this.handleChange}
-                  volume={this.props.playingVolume[gridItem.id]}
-                  playing={0}
-                />
-              ))}
-            </div>
-          )}
-          <div className="btn" onClick={this.props.stop}>
-            <button>stop</button>
-          </div>
-          <div className="btn" onClick={this.props.pauseplay}>
-            <button>{this.props.pauseplayy}</button>
-          </div>
         </div>
       </div>
     );
